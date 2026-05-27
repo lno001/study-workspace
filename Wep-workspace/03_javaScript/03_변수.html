@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>변수</title>
+</head>
+
+<body>
+
+    <h1>자바스크립트의 경우 자료형을 선언하지 않음</h1>
+
+    <h3>자바스크립트는 총 세개의 키워드로 변수를 선언할 수 있음</h3>
+    <h4>* var, let, const</h4>
+
+    <button onclick="variable();">변수 선언해보기</button>
+
+    <script>
+        function variable() {
+            var userId = 'user01';
+            console.log(userId);
+
+            userId = 'user02';
+            console.log(userId);
+
+            userId = 123;
+            console.log(userId);
+            userId = false;
+            console.log(userId);
+
+            var userId = 'user03';
+            console.log(userId);
+
+            console.log('------------------------------');
+
+            let userPwd = 'pass02';
+            console.log(userPwd);
+
+            console.log('------------------------------');
+
+            const userName = '고길동';
+            console.log(userName);
+
+            // userName = '123213';
+            // const email;
+        }
+    </script>
+
+    <hr>
+
+    <button onclick="scope();">버거킹</button>
+
+    <script>
+        function scope() {
+
+            for (var i = 0; i < 5; i++) { }
+            console.log(i);
+            if (1) {
+                var userName = '홍길동';
+            }
+            console.log(userName);
+
+            if (2) {
+                let age = 20;
+                const hobby = '취미당~';
+            }
+
+            // console.log(age);
+            // console.log(hobby);
+
+        }
+    </script>
+
+    <h4>변수 선언 위치에 따른 전역 / 지역변수</h4>
+
+    <script>
+        var str = 'var 전역변수'
+
+        // window.onload = 현재 이 HTML문서가 전부 다 로딩되고나서
+        // 곧바로 실행할 이벤트 핸들러(익명함수)를 수행
+        window.onload = function () {
+            var str = 'var 지역변수'
+
+            console.log(str);
+
+            console.log(window.str);
+            console.log(this.str); // this 객체가 항상 window객체를 가리키는 것은 아님
+        };
+
+        console.log(str);
+
+    </script>
+
+    <h3>* 자료형</h3>
+
+    <pre>
+        변수 선언 시 자료형은 별도로 선언하지 않음
+        자료형의 개념이 있긴 함
+        => 변수에 대입되는 값을 따라서 알아서 자료형을 결정함 : 타입추론
+    </pre>
+
+    <h4>자료형의 종류</h4>
+
+    <ul>
+        <li>string(문자열)</li>
+        <li>number(숫자)</li>
+        <li>boolean(논리)</li>
+        <li>object(객체)</li>
+        <li>function(함수)</li>
+        <li>undefined(초기화가 안된 상태)</li>
+    </ul>
+
+    <div class="area" id="area"></div>
+    <button onclick="printType()">자료형 출력해보기</button>
+
+    <script>
+        function printType() {
+            const name = '홍길동';
+            const age = 15;
+            const isGoodThief = true;
+            const hobby = ['운동', '공부'];
+
+            const famliy = { 아빠: "홍문", 형: "홍인형" };
+
+            const call = function () {
+                alert('아버지를 아버지라 못부름');
+            };
+
+            let noVal;
+
+            const area = document.querySelector('#area');
+
+            // console.log(area);
+
+            // area.innerHTML = name + '<br>';
+            // area.innerHTML += age + '<br>';
+
+            area.innerHTML = `${name} <br> ${age} <br> ${isGoodThief} <br>
+                              ${hobby} <br> ${famliy} <br> ${call} <br>
+                              ${noVal} <hr>`;
+
+            area.innerHTML += `${typeof name} <br> ${typeof age} <br> 
+                               ${typeof isGoodThief} <br> ${typeof hobby} <br> 
+                               ${typeof famliy} <br> ${typeof call} <br>
+                               ${typeof noVal} <hr>`;
+        }
+    </script>
+
+    <hr>
+    <h3>string타입 메소드들</h3>
+
+    <button onclick="stringMethod()">문자열 메소드 호출</button>
+
+    <script>
+        function stringMethod() {
+
+            const str = "Hello World";
+
+            console.log(`str : ${str} <br>
+                         문자열의 길이 : ${str.length} <br>
+                         toUpperCase : ${str.toUpperCase} <br>
+                         toLowerCase : ${str.toLowerCase} <br>
+                         indexOf : ${str.indexOf('1')} <br>
+                         lastindexOf : ${str.lastIndexOf('1')} <br>
+                         substring : ${str.substring(3)} <br>
+                         substring : ${str.substring(0, 4)} <br>
+                         ${Math.random()}`);
+
+            console.log('-------------------------------');
+
+            console.log(7 + '7');
+            console.log(7 + 7 + '7');
+            console.log(7 - '7');
+            console.log(7 * '7');
+            console.log(7 / '7');
+            console.log('하' - 7);
+
+            const price = '1,000';
+            const salePrice = '700';
+
+            console.log(price + salePrice);
+
+            console.log(parseInt(salePrice) + parseInt(salePrice));
+
+            console.log(Number(salePrice) + parseInt(salePrice));
+
+            console.log(Number(price));
+            console.log(parseInt(price));
+            console.log(isNaN('abc'));
+            console.log(isNaN('123'));
+            console.log(isNaN(123));
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

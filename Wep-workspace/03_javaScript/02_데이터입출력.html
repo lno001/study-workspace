@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>입 / 출력하기</title>
+
+    <style>
+        #nav {
+            position: fixed;
+            width: 200px;
+            height: 430px;
+            right: 80px;
+            top: 120px;
+            border: 1px solid pink;
+            background-color: pink;
+            display: none;
+        }
+
+        .area {
+            width: 500px;
+            height: 300px;
+            border: 1px solid;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h1>입 / 출력하기</h1>
+
+
+    <button onclick="darkMode()">다크모드</button> <br>
+    <button onclick="lightMode()">라이트모드</button>
+    <div id="nav">
+        나는 div
+    </div>
+
+    <button onclick="hidden()">버튼버튼</button>
+
+    <script>
+        const bodyElement = document.querySelector('body');
+
+        function darkMode() {
+            bodyElement.style.background = 'black';
+            bodyElement.style.color = 'white';
+        }
+        function lightMode() {
+            bodyElement.style.background = 'white';
+            bodyElement.style.color = 'black';
+        }
+
+        function hidden() {
+            document.querySelector('#nav').style.display = 'none';
+        }
+
+
+    </script>
+
+    <h3>document.write('출력하고자하는 문구')</h3>
+
+    <button onclick="documentWrite();">누르고 싶게 만들기</button>
+
+    <script>
+        function documentWrite() {
+            // alert('테스트~~~')
+            // document.write('하하하하하 호호호호호호')
+            document.write('<strong>강하게!</strong>쓸 수 있음');
+
+
+
+        }
+    </script>
+
+    <div id="area1" class="area">
+        innerHTML / innerText <br>
+        요소(Element)의 값(Content)를 조작할 수 있는 속성 두 가지
+
+        '=> get
+
+
+
+
+    </div>
+
+    <button id="btn1">버튼~~~</button>
+
+    <script>
+        // 1. 먼저 필요한 요소에 접근
+        const innerbtn = document.querySelector('#btn1');
+        // console.log(innerbtn);
+
+        // 2. 선택된 요소의 이벤트 속성에 이벤트 핸들러(함수) 대입
+        innerbtn.onclick = function () {
+            // alert('버튼~~')
+
+            // 1. div요소에 접근
+            const innerDiv = document.querySelector('#area1');
+
+            // console.log(innerDiv);
+            console.dir(innerDiv);
+
+            // 선택한 요소의 속성값을 get 하고 싶다.
+            console.log("div의 요소의 id값 : " + innerDiv.id);
+            console.log(innerDiv.className);
+
+            console.log('----------------------------------');
+            console.log(innerDiv.innerHTML); // 태그 포함
+            console.log(innerDiv.innerText); // 포함 X
+
+            // 요소의 property에 set하는 방법
+            innerDiv.innerHTML = '<b>innerHTML 속성 값 변경 </b>';
+            innerDiv.style.color = 'blue';
+
+        }
+
+    </script>
+
+    <h2>입력받는 방법</h2>
+
+    <h3>1) window.confirm('질문내용')</h3>
+
+    <pre>
+        confirm() 호출 시 인자로 전달한 '질문 내용'과 확인 / 취소 버튼이 존재하는 창이 뜸
+        <br>
+        확인 버튼을 클릭 시 true값 반환, 취소 버튼 클릭 시 false값 반환
+    </pre>
+
+    <button onclick="check();">버튼</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function check() {
+            const value = confirm('졸리면 확인, 아니면 취소를 눌러보세요~');
+
+            // console.log(value); true/ false
+
+            const divEl = document.querySelector('#area2');
+            // console.log(divEl);
+
+
+            // 1번 변수명을 적는다.
+            // 2번 .로 참조한다.
+            // 3번 속성명을 적는다.
+            // 4번 =를 적는다.
+            // 5번 대입랗 값을 적는다.
+
+            if (value) {
+                divEl.innerHTML = '<div style="color:red">정신차렷!!!</div>';
+            } else {
+                divEl.innerHTML = '<div>안졸린데요?</div>';
+            }
+        };
+
+        function fn1() {
+        }
+    </script>
+
+    <hr>
+
+    <h3>수량</h3>
+
+    <button onclick="minus();">-</button><span id="count">0</span>개<button onclick="plus();">+</button>
+
+    <script>
+        function minus() {
+            const minusEl = document.querySelector('#count');
+
+            // console.log(minusEl);
+            minusEl.innerText--;
+        };
+        function plus() {
+            const plusEl = document.querySelector('#count');
+
+            // plusEl.innerText++;
+            plusEl.innerText = Number(plusEl.innerText) + 1;
+        }
+    </script>
+
+    <hr>
+
+    <h3>2) window.prompt('질문내용')</h3>
+
+    <pre>
+        prompt() 호출 시 '질문 내용'과 사용자가 값을 입력할 수 있는
+        input요소와 확인 / 취소 버튼이 보여지는 창 생성 <br>
+
+        - 확인 버튼 클릭 시 텍스트상자에 입력한 값을 반환 <br>
+        - 취소 버튼 클릭 시 null값을 반환
+    </pre>
+
+    <ul id="parent"></ul>
+    <button onclick="createEl();">버튼</button>
+
+    <script>
+        function createEl() {
+            const num = prompt('숫자를 입력해주세요~');
+
+            // console.log(num);
+            const parent = document.querySelector('#parent');
+
+            for (let i = 0; i < num; i++) {
+                parent.innerHTML += '<li>자식</li>';
+            }
+        }
+    </script>
+
+    <h3>4) input요소.value</h3>
+
+    <input type="text" id="input-text"> <br>
+    <label id="msg"></label>
+    <button onclick="validation();">날쏘고가라</button>
+
+    <script>
+        function validation() {
+
+            const el = document.querySelector('#input-text');
+            // console.dir(el.value);
+            const labelEl = document.querySelector('#msg');
+            if (el.value.length > 10) {
+                labelEl.innerHTML = '너무 길어서 쓸 수 없어요';
+                labelEl.style.color = 'red';
+            } else {
+                labelEl.innerHTML = '참 잘했어요';
+                labelEl.style.color = 'lightgreen'
+            }
+        }
+    </script>
+
+    <br>
+    <hr>
+
+    <div id="color" class="area" style="background: red;"></div>
+    <!-- MyBaris CRUD 하루에 한 번 씩 완성하기 -->
+    <button onclick="selsectById();">할 건 합시다</button>
+
+    <script>
+        function selsectById() {
+            const area1 = document.querySelector('#color');
+
+            const area2 = document.getElementById('color');
+
+            //   console.log(area1);
+            //   console.log(area2);
+
+            const areacolor = area1.style.background
+
+
+            switch (areacolor) {
+                case 'red': area1.style.background = 'orange'; break;
+                case 'orange': area1.style.background = 'yellow'; break;
+                case 'yellow': area1.style.background = 'green'; break;
+                case 'green': area1.style.background = 'blue'; break;
+                case 'blue': area1.style.background = 'indigo'; break;
+                case 'indigo': area1.style.background = 'violet'; break;
+                case 'violet': area1.style.background = 'red'; break;
+            };
+        }
+    </script>
+
+    <h3>태그명으로 요소들 접근</h3>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <hr>
+
+    <button onclick="tag();">태그명으로 접근하기</button>
+
+    <script>
+        function tag() {
+            const arr = document.querySelectorAll('li');
+            const lis = document.getElementsByTagName('li');
+            // console.log(arr);
+            // console.log(lis);
+
+            let redColor = 100;
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].style.backgroundColor = 'rgb(' + redColor + ',180,180)';
+                redColor += 30;
+            }
+        };
+    </script>
+
+    <hr>
+
+    <h3>name속성값으로 접근해보기</h3>
+
+    <form action="요청받아줄서버" method="get">
+
+        <fieldset>
+            <legend>동물목록</legend>
+
+            <input type="checkbox" name="animal" value="펭귄">펭귄
+            <input type="checkbox" name="animal" value="기린">기린
+            <input type="checkbox" name="animal" value="하마">하마
+            <input type="checkbox" name="animal" value="악어">악어
+
+            <button type="button" onclick="checkAnimal();">버튼</button>
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <script>
+        function checkAnimal() {
+            const animals = document.getElementsByName('animal');
+            // console.log(animals);
+            // console.log(animals[0].value);
+            // console.log(animals[0].checked);
+
+            // 만약에 번튼을 클릭 했을 때 펭귄 체크박스가
+            // 체크된 상태라면 alert창을 띄우겠다.
+
+            // if(animals[0].checked){
+            //     alert('체크완료~~')
+            // }
+
+            // 버튼 클릭 했을 때 체크박스 중 체크된 모든 체크박스의 value값을 alert에 출력
+            // let checkMenu = '';
+
+            // for (let i = 0; i < animals.length; i++) { 
+            //     if (animals[i].checked) {
+            //         checkMenu += ' ' + animals[i].value;
+            //     };
+            // };
+            // if(checkMenu != '') {
+            //     alert('선택하신 동물은 ' + checkMenu + '입니다.');
+            // };
+
+            const selected = [...animals].filter(e => e.checked).map(e => e.value);
+            alert(`선택한 동물은 ${selected} 입니다`);
+            console.log("b" + "a" + + "a" + "a");
+            if('!true'){
+                alert("hi");
+            }
+        };
+
+        
+    </script>
+
+
+</body>
+
+</html>

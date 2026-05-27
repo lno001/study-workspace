@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>관광지 사진</title>
+    <style>
+        body {
+            background-color: aqua;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 1000px;
+            height: 2000px;
+            margin: auto;
+            background-color: aquamarine;
+            border-radius: 10px;
+        }
+
+        h1 {
+            padding: 15px 50px 0;
+        }
+
+        #show {
+            margin: 10px 100px;
+        }
+
+        #main {
+            width: 900px;
+            height: 1675px;
+            margin: 50px;
+            background-color: antiquewhite;
+            border-radius: 20px;
+            padding-top: 1px;
+
+            &>#tourist {
+                width: 850px;
+                height: 140px;
+                margin: 25px;
+                background-color: aliceblue;
+                border-radius: 20px;
+                display: flex;
+
+                &>#title {
+                    width: 140px;
+                    height: 140px;
+                    justify-content: center;
+
+                    &>#titleName {
+                        width: 140px;
+                        height: 20px;
+                        padding-left: 20px;
+                        padding-bottom: 10px;
+                    }
+
+                    &>img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 10px;
+                        margin-left: 20px;
+                    }
+                }
+
+                &>#keyword {
+                    width: 710px;
+                    background-color: aqua;
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                    padding: 10px;
+                }
+            }
+        }
+    </style>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div id="wrap">
+        <h1>관광지별 이미지</h1>
+        <hr>
+        <button onclick="show();" id="show">펼쳐보기</button>
+        <main id="main"></main>
+        <button onclick="before();" id="before">이전</button>
+        <button onclick="after();" id="after">다음</button>
+    </div>
+
+    <script>
+        let pageNo = 1;
+        function show() {
+
+            $.ajax({
+                url: `https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=7569977da16b61a71cea0de5de4a37b60026d70f750ca2fcc7a097de0641e861&numOfRows=10&pageNo=${pageNo}&MobileOS=WIN&MobileApp=AppTest&arrange=A&_type=json`,
+                dataType: 'json',
+                success: e => {
+                    console.log(e.response.body.items.item);
+                    const items = e.response.body.items.item;
+
+                    const el = items.map(e => `<div id="tourist">
+                                                    <div id="title">
+                                                        <div id="titleName">${e.galTitle}</div>
+                                                        <img src="${e.galWebImageUrl}" />
+                                                        </div>
+                                                    <div id="keyword">태그 목록<hr>${e.galSearchKeyword}</div>
+                                                </div>`).join('');
+                    document.querySelector("#main").innerHTML = el;
+                }
+
+            });
+        }
+
+        function before(){
+            if (pageNo > 1){
+                pageNo--;
+                show(pageNo);
+            }
+        }
+        
+        function after(){
+            pageNo++;
+            show(pageNo);
+        }
+    </script>
+</body>
+
+</html>

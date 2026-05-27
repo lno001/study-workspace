@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	ul {
+		list-style : none;
+		line-height: 200%;
+	
+	}
+
+
+</style>
+</head>
+<body>
+	<h1>웰컴 파일</h1>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<h2>웹을 시작해보자</h2>
+	
+	
+	<a href="http://localhost:8088/first/views/request_get.html">GET방식으로 가야지~~~</a>
+	<a href="views/request_get.html">두번째 방법</a>
+	
+	<h2> 사용자의 정보 받기 - GET </h2>
+	<p>정보를 입력하신 뒤 정보보내기 버튼을 클릭해주세요 </p>
+	
+	<form method="get" action="http://localhost:8088/first/first.do">
+		<ul>
+			<li>
+				이름 : <input type="text" name="name" />
+			</li>
+			<li>
+				성별 :
+				남자 <input type="radio" name="gender" value="남자"/>
+				여자 <input type="radio" name="gender" value="여자"/>
+				선택안함 <input type="radio" name="gender" value="선택 안 함"/>
+			</li>
+			<li>
+				나이 : <input type="number" name="age" />
+			</li>
+			<li>
+				사는 지역 :
+				<select name="city">
+					<option>서울</option>
+					<option value="제주도">제주도</option>
+				</select>
+			</li>
+			<li>
+				키 : <input type="range" min="130" max="220" name="height" />
+			</li>
+			<li>
+				좋아하는 음식(모두 고르시오) : 
+				햄버거 <input type="checkbox" name="food" value="햄버거"/>
+				제육볶음 <input type="checkbox" name="food" value="제육볶음"/>
+				돈까스 <input type="checkbox" name="food" value="돈까스"/>
+				피자 <input type="checkbox" name="food" value="피자"/>
+				치킨 <input type="checkbox" name="food" value="치킨"/>
+			</li>
+			<li>
+				<button type="submit">가즈아</button>
+			</li>
+		</ul>
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

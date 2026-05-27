@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>함수</title>
+    <style>
+        .area{
+            width: 500px;
+            height: 200px;
+            border: 1px solid tomato;
+            background-color: salmon;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 onclick="firstFn();">함수! (funchtion)</h1>
+
+    <!-- 
+         함수의 목적
+         1. 코드의 재사용
+         2. 이벤트핸들러    
+    -->
+
+    <h3 onclick="firstFn();">선언적함수</h3>
+
+    <pre onclick="firstFn();">
+        function 이라는 키워드를 이용하여 함수를 선언
+
+        function 함수식별자(매개변수) {
+            함수 호출시 수행할 코드;
+            return 결과값;
+        }
+        - 매개변수, return은 생략 가능
+    </pre>
+
+    <div id="area1" class="area" onclick="firstFn();"></div>
+
+    <script>
+        function firstFn() {
+            document.querySelector('#area1').innerHTML = '함수호출';
+        }
+    </script>
+
+    <hr>
+
+    <h3>익명함수</h3>
+
+    <pre>
+
+        변수/속성 = () => {
+            이벤트가 발생했을 때 수행할 코드~~
+        }
+    </pre>
+
+    <button id="btn">버튼</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        const btnEl = document.querySelector('#btn');
+
+        btnEl.onclick = () => {
+            // 버튼을 클릭했을 때 수행하고 싶은 코드를
+            // 버튼요소에 클릭 이벤트가 발생했을 때 동작시킬 코드 뭉치
+            // ==> 이벤트 핸들러
+            document.querySelector('#area2').innerHTML = '함수호출';
+        }
+
+    </script>
+
+    <h3>함수의 매개변수</h3>
+
+    <button onclick="paramFn('문자열');">문자열</button>
+    <button onclick="paramFn(123);">숫자</button>
+    <button onclick="paramFn(1, 2, 3);">배열</button>
+    <button onclick="paramFn(prompt('호잇'));">펑션</button>
+    <button onclick="paramFn();">無</button>
+    <button onclick="paramFn(1, 2);">많이많이</button>
+
+    <div id="area3" class="area"></div>
+
+    <button onclick="paramFn(234,2342,3426,45,3345,6875,63,453,2,343456,345,6,567,5,43432,2,445,645,76,457,4,53,453,456,457,5867,8,8797,7,54,5856,78,4,53,754)">1번</button>
+    <button onclick="paramFn(1,2,3,4,5,6,7,7,8)">2번</button>
+
+
+    <script>
+        function paramFn(...value){
+            // console.log(...value);
+            // document.querySelector('#area3').innerHTML = value;
+
+            console.log(arguments);
+            console.log(value);
+
+
+        }
+    </script>
+
+    <hr>
+
+    <button onclick="color(this);" class="btn" id="btn1">내가 누구게?</button> <br>
+    <button onclick="color(this);" class="btn" id="btn2">내가 누구게?</button>
+
+    <script>
+        // const btnEl = document.querySelector('#btn1');
+
+        function changeColor1() {
+            document.querySelector('#btn1').style.color = 'red';
+        }
+        function changeColor2() {
+            document.querySelector('#btn2').style.color = 'red';
+        }
+        
+        function color(value) {
+            // console.log(value);
+            value.style.color = 'red';
+        }
+        </script>
+
+        <hr>
+
+        <h3>함수의 반환!</h3>
+
+        <button onclick="random(prompt('이름을 입력하세요!'));">반환받기</button>
+        <div id="area6" class="area"></div>
+
+        <script>
+            function random(name){
+                const fn = generateNum();
+                // console.log(num);
+                document.querySelector('#area6').innerHTML = fn(name);
+            }
+
+            function generateNum(){
+                const num = parseInt(Math.random() * 10) + 1;
+                
+                return function generateName(name){
+                    return `${name}님의 랜덤한 숫자 : ${num}`;
+                };
+            }
+
+
+        </script>
+
+        <hr>
+
+        <h3>옛날 코드를 보면 볼 수도 있는 코드</h3>
+
+        <button onclick="testFn()();">버튼</button>
+
+        <script>
+            function testFn(){
+                return function(){
+                    alert('날불렀니??');
+                };
+            }
+        </script>
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

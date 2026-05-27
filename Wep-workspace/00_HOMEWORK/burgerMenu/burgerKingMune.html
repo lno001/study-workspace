@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>버거킹 메뉴판</title>
+
+    <style>
+        body{
+            background-color: bisque;
+        }
+
+        #wrap {
+            width: 980px;
+            height: 1700px;
+            margin: auto;
+            background-color: antiquewhite;
+            box-shadow: 1px 2px 12px lightgrey;
+            border-radius: 10px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 300px);
+            grid-template-rows: repeat(4, 400px);
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .menu {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu img {
+            width: 280px;
+            height: 280px;
+            background-color: aliceblue;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .menu h4 {
+            width: 260px;
+            height: 50px;
+            margin: 0;
+            background-color: aqua;
+            padding: 5px 20px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .menu p {
+            width: 260px;
+            height: 30px;
+            margin: 0;
+            background-color: black;
+            color: aliceblue;
+            text-align: end;
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="menu();"> 메뉴보기 </button>
+    <div id="wrap"></div>
+
+    <script>
+        function menu(){
+            const burger = [
+                {
+                    "img" : "https://mob-prd.burgerking.co.kr/images/menu/web/main/2026/03/25/c055cfee-bb6a-42ee-a737-b2ba9d9fab2f.png",
+                    "name" : "스모크 비프립 와퍼 라지세트",
+                    "kcal" : "1396 kcal"
+                },
+                {
+                    "img" : "https://mob-prd.burgerking.co.kr/images/menu/web/main/2026/03/25/b6f4b216-8e21-47b8-8707-3d80f1d1f6a0.png",
+                    "name" : "스모크 비프립 와퍼",
+                    "kcal" : "811 kcal"
+                },
+                {
+                    "img" : "https://mob-prd.burgerking.co.kr/images/menu/web/main/2026/03/25/b4c2bb1d-7405-4059-984a-80cf606f5618.png",
+                    "name" : "스모크 베이컨 와퍼 라지세트",
+                    "kcal" : "1455 kcal"
+                },
+                {
+                    "img" : "https://mob-prd.burgerking.co.kr/images/menu/web/main/2026/03/25/b1fd7764-f5f2-40d2-8a42-b7b6935c4763.png",
+                    "name" : "스모크 베이컨 와퍼",
+                    "kcal" : "870 kcal"
+                },
+                // {
+                //     "img" : "",
+                //     "name" : "",
+                //     "kcal" : ""
+                // },
+            ]
+
+            const el = burger.map(w => `<div class="menu">
+                                              <img src="${w.img}" />
+                                              <h4>${w.name}</h4>
+                                              <p>${w.kcal}</p>
+                                          </div>`).join('');
+
+            document.querySelector('#wrap').innerHTML = el;
+
+        }
+    </script>
+
+
+
+</body>
+</html>

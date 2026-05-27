@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>박물관헤더영역</title>
+
+    <style>
+        /* header, div, nav {
+            border: 1px solid red;
+        } */
+        header{
+            width: 1000px;
+            height: 50px;
+            display: flex;
+        }
+
+/* 헤더 영역 분할 */
+        header{
+            background-color: rgba(29, 29, 29, 0.9);
+            border-radius: 15px;
+        }
+        #main_name{
+            width: 200px;
+            height: 100%;
+            display: flex;
+        }
+        #search_div{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        nav{
+            width: 500px;
+            height: 100%;
+        }
+/* 이름 영역 */
+        #logo{
+            width: 50px;
+            height: 100%;
+            border-radius: 15px;
+        }
+        #name{
+            width: 150px;
+            height: 100%;
+            color: aliceblue;
+            font-size: 23px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+/* 네브 영역 */
+        #navbar{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>li{
+                padding: 0 10px;
+
+                &>a{
+                    font-size: 22px;
+                    font-weight: 600;
+                    color: #1a1a1a;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+
+                    &:hover{
+                        color: #eeeeee;
+                    }
+                }
+            }
+        }
+
+
+
+
+/* 버튼 영역 */
+        #search-form{
+            width: 95%;
+            height: 40px;
+            display: flex;
+            padding: 4px;
+            background-color: #8378ad;
+            border-radius: 10px;
+        }
+
+         #search-text{
+            flex: 8;
+        }
+
+        #search-btn{
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #search-text > input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: none;
+            padding: 0 15px;
+            color: #1a1a1a;
+            border-radius: 7px;
+
+            &:focus{
+                outline: #c53030;
+            }
+        }
+        #search-btn > button{
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #search-btn>button>img{
+            width: 30px;           /* ← 여기 숫자 바꾸면 버튼 크기 바뀜 */
+            height: 30px;
+            border-radius: 100%;
+            border: none;
+   
+            cursor: pointer;
+            padding: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div id="main_name">
+            <img src="IMG/Saturn_icon.jpg" alt="" id="logo">
+            <div id="name">KH천체박물관</div>
+        </div>
+        <nav>
+            <ul id="navbar">
+                <li><a href="#">전시 정보</a></li>
+                <li><a href="#">오시는 길</a></li>
+                <li><a href="#">소개</a></li>
+            </ul>
+        </nav>
+        <div id="search_div">
+            <form action="search" method="get" id="search-form">
+                <div id="search-text">
+                    <input type="text" name="query" placeholder="검색어를 입력">
+                </div>
+                <div id="search-btn">
+                    <button><img src="IMG/search.jpg" alt="검색"></button>
+                </div>
+            </form>
+        </div>
+    </header>
+    
+
+    
+</body>
+</html>

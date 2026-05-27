@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>기본 선택자</title>
+    <style>
+        /* CSS의 주석문법 */
+        *{
+            color: yellowgreen;
+            background-color: black;
+            padding: 0%;
+            margin: 0%;
+        }
+        pre{
+            color: blueviolet;
+            background-color: aquas;
+        }
+        #li-3{
+            color: #000;
+        }
+        .class-1{
+            color: blue
+            ;
+        }
+        .class-2{
+            color: red
+        }
+    </style>
+
+
+</head>
+<body>
+    
+    <!--   
+    <font color="red" size="5">경고메세지</font>
+    <center>가운데 정렬할 내용</center>
+    -->
+
+    <div style="color:aqua">잘 안쓰는 방식</div>
+
+    <h3>1. 전체(모든 요소) 선택자</h3>
+
+    <pre>
+        *{
+            스타일속성 : 속성값;
+            스타일속성 : 속성값;
+        }
+
+        => 현재 이 HTML문서 내의 모든 요소를 다 선택해서 스타일을 부여
+    </pre>
+
+    <hr>
+
+    <h3>2. 태그 선택자</h3>
+
+    <pre>
+        태그명 {
+            스타일속성 : 속성값;
+            스타일속성 : 속성값;
+        }
+
+        => 문서 내에 같은 태그들을 전부 선택할 때 사용
+    </pre>
+
+    <h3>3. 아이디 선택자 </h3>
+
+    <pre id="pre-3">
+        #아이디속성값 {
+            스타일속성 : 속성값;
+            스타일속성 : 속성값;
+        }
+
+        => 문서 내의 특정 HTML요소 단 하나만을 선택할 때 사용
+        단, 해당 요소에 반드시 id속성값이 존재해야만 하며 다른 요소와 중복되면 안됨
+        id값은 반드시 하나의 문서에서 고유한 값이어야 함
+        동일한 태그더라도 부분적으로 다르게 스타일을 부여하고 싶을 때 사용
+    </pre>
+
+    <ol>
+        <li>아이디선택자</li>
+        <li>아이디선택자</li>
+        <li id="li-3">아이디선택자</li>
+        <li>아이디선택자</li>
+    </ol>
+
+    <h3>4. 클래스 선택자</h3>
+
+    <pre>
+        .클래스속성값{
+            스타일속성 : 속성값;
+            스타일속성 : 속성값;
+        }
+
+        => 현재 HTML문서에서 여러 개의 요소를 선택할 때 사용
+    </pre>
+
+    <ui>
+        <li class="class-1">클래스선택자1</li>
+        <li class="class-2">클래스선택자2</li>
+        <li class="class-1">클래스선택자3</li>
+        <li class="class-1">클래스선택자4</li>
+        <li class="class-2">클래스선택자5</li>
+        <li class="class-2">클래스선택자6</li>
+        <li class="class-1 class-2">클래스선택자7</li>
+    </ui>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>CSS 재미있다</title>
+    <link rel="stylesheet" href="02_selector.css">
+
+</head>
+<body>
+    <h1>기타 선택자</h1>
+
+    <h2>1. 속성 선택자</h2>
+
+    <div class="div-class" name="name1">div1</div>
+    <div class="div-class" name="name2">div2</div>
+    <div class="div-class" name="name3 name1">div3</div>
+    <div class="class-div" name="name4">div4</div>
+
+    <h2>2. 자식 선택자와 후손 선택자</h2>
+
+    <div id="test1">
+        <ul>이런경우가
+            <li>있답니다?</li>
+        </ul>
+        <ol>
+            <li>나는 ol자식</li>
+            <li>나도~</li>
+        </ol>
+        <h5>으히히</h5>
+        <h5 id="h1">으하하</h5>
+        <h5>우헤헤</h5>
+        <h5>우효</h5>
+    </div>
+
+    <ul>있어요
+        <li>많아요~</li>
+        <li>흐흐흐</li>
+    </ul>
+
+    <h3>3. 동위(같은레벨) 선택자</h3>
+
+    <pre>
+
+
+    </pre>
+
+    <div id="test2">div1</div>
+    <div>div2</div>
+    <ul>ul요소</ul>
+    <div>div3</div>
+    <div>div4</div>
+
+    <div id="active" class="area"></div>
+    <br>
+    <div id="hover" class="area"></div>
+
+
+    <div id="chk">
+        <input type="checkbox" id="wolf">
+        <label for="wolf">늑대</label>
+        <input type="checkbox" id="fox">
+        <label for="fox">여우</label>
+    </div>
+
+    <button>버튼</button>
+    <button disabled>버튼</button>
+    
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,93 @@
+package com.kh.web.member.model.service;
+
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.kh.web.common.Template;
+import com.kh.web.member.model.dao.MemberDao;
+import com.kh.web.member.model.dto.MemberDto;
+import com.kh.web.member.model.dto.UpdatePwdDto;
+
+public class MemberService {
+
+	private MemberDao md = new MemberDao();
+
+	public int insertMember(MemberDto member) {
+		
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = md.insertMember(sqlSession, member);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	public MemberDto login(MemberDto member) {
+		// 전통적인 session방식 로그인은 조회된 행의 정보를 객체의 필드에 담아서 반환
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		MemberDto loginMember = md.login(sqlSession, member);
+		
+		sqlSession.close();
+		
+		return loginMember;
+		
+	}
+
+	public MemberDto updateMember(Map<String, String> map) {
+		MemberDto member = null;
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = md.updateMember(sqlSession, map);
+		
+		if(result > 0) {
+			sqlSession.commit();
+			member = md.selectMember(sqlSession, Long.parseLong(map.get("userNo")));
+		}
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public int updatePassword(UpdatePwdDto upd) {
+		
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = md.updatePassword(sqlSession, upd);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	public int deleteMember(MemberDto member) {
+		
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = md.deleteMember(sqlSession, member);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+}

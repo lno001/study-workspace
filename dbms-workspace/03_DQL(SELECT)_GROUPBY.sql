@@ -1,0 +1,136 @@
+-- 종별로 동물들이 몇마리씩 있는지 조회하고 싶다.
+
+SELECT
+	ANIMAL_NAME,
+	SPECIES_ID
+FROM
+	ANIMAL;
+
+SELECT
+	*
+FROM
+	SPECIES;
+
+SELECT
+	ANIMAL_NAME
+FROM
+	ANIMAL
+WHERE
+	SPECIES_ID = 'S01'
+
+-- 종별 동물 수
+SELECT
+	SPECIES_ID,
+	COUNT(*)
+FROM
+	ANIMAL
+GROUP BY
+	SPECIES_ID;
+
+SELECT
+	GENDER,
+	COUNT(*)
+FROM
+	ANIMAL
+GROUP BY
+	GENDER;
+	
+SELECT
+	SPECIES_ID,
+	MAX(WEIGHT_KG),
+	MIN(WEIGHT_KG)
+FROM
+	ANIMAL
+GROUP BY
+	SPECIES_ID;	
+	
+-- 구역별 동물 수와 평균 체중 조회
+
+SELECT
+	ZONE_ID,
+	COUNT(*) || '마리' AS "동물 수" ,
+	ROUND(AVG(WEIGHT_KG)) || 'Kg' AS "평균 무게"
+FROM
+	ANIMAL
+GROUP BY
+	ZONE_ID;
+	
+SELECT
+	ZONE_ID,
+	GENDER,
+	COUNT(*)
+FROM
+	ANIMAL
+GROUP BY
+	ZONE_ID,
+	GENDER
+ORDER BY
+	ZONE_ID,
+	GENDER DESC;
+	
+SELECT
+	SPECIES_ID,
+	COUNT(*)
+FROM
+	ANIMAL
+	-- WHERE
+	--	COUNT(*) >= 4
+	--	GENDER = 'M'
+GROUP BY
+	SPECIES_ID
+HAVING
+	COUNT(*) >= 4
+ORDER BY
+	SPECIES_ID;	
+	
+SELECT
+	ZONE_ID ,
+	ROUND(AVG(WEIGHT_KG)) AS "평균체중"
+FROM
+	ANIMAL
+GROUP BY
+	ZONE_ID
+HAVING
+	AVG(WEIGHT_KG) >= 100
+ORDER BY
+	ZONE_ID DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>하지만 jQuery를 사용할 것이다.</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h1>AJAX</h1>
+
+    <pre>
+        Asynchronous JavaScript And XML
+    </pre>
+
+    <!-- 
+        시군명 SIGUN_NM, 사업장명 BIZPLC_NM, 소재지도로명주소 REFINE_ROADNM_ADDR
+    -->
+
+    <div id="cafe-result">
+
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th width="200">지역</th>
+                    <th width="300">카페명</th>
+                    <th width="700">주소</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <button onclick="before();" class="btn btn-lg btn-outline-secondary">이전</button>
+        <button onclick="next();">다음</button>
+
+    </div>
+
+    <script>
+
+        $(function () {
+            let page = 1;
+            function next() {
+                page++;
+                requestCafe(page);
+
+            };
+
+            window.next = next;
+
+            function before() {
+                if (page > 1) {
+                    page--;
+                    requestCafe(page);
+                };
+            };
+
+            window.before = before;
+
+
+            function requestCafe(pageNo) {
+                if (!pageNo) pageNo = 1;
+                $.ajax({
+                    url: 'https://openapi.gg.go.kr/Genrestrtcate?KEY=d118ddedea3c4c109d2247daf5322307&Type=json&pSize=10&pIndex=' + pageNo,
+                    dataType: 'json',
+                    success: result => {
+                        // console.log(result.Genrestrtcate[1].row);
+                        const cafes = result.Genrestrtcate[1].row;
+
+                        // console.log(cafes[0].BIZPLC_NM);
+                        // console.log(cafes[0].SIGUN_NM);
+                        // console.log(cafes[0].REFINE_ROADNM_ADDR);
+
+                        //const name = cafes[0].BIZPLC_NM;
+                        // const sigunName = cafes[0].SIGUN_NM;
+                        //const adress = cafes[0].REFINE_ROADNM_ADDR;
+
+                        // const el = `<tr>
+                        //                 <th>${name}</th>
+                        //                 <th>${sigunName}</th>
+                        //                 <th>${adress}</th>
+                        //             </tr>`;
+                        // console.log(1);
+                        const el = cafes.map(e => `<tr>
+                                <th>${e.SIGUN_NM}</th>
+                                <th>${e.BIZPLC_NM}</th>
+                                <th>${e.REFINE_ROADNM_ADDR}</th>
+                                </tr>`).join('');
+
+                        document.querySelector('tbody').innerHTML = el;
+                    }
+                });
+            };
+
+            requestCafe(1);
+
+        });
+    </script>
+
+    <button type="button" id="show" class="btn btn-primary">Show</button>
+    <button type="button" id="hide" class="btn btn-secondary">Hide</button>
+    <button type="button" id="toggle" class="btn btn-success">Toggle</button>
+    <button type="button" id="fadeIn" class="btn btn-danger">FadeIn</button>
+    <button type="button" id="fadeOut" class="btn btn-warning">Fadeout</button>
+    <button type="button" id="fadeToggle" class="btn btn-dark">FadeToggle</button>
+    <br>
+
+    <img src="https://i.namu.wiki/i/_P79d17raBjig4jKqK_14rlfYzBy7mL2aXI6OeRvbppFircwplYBCuMoMfwZk9rKgMNjaHHTI5ws_V1BpC9QUinbGFfdhmufTJr892WM7i_GVzZloQGO5RtdMPX7Trys2XcZUMtDLHbi1q7F8ubmnw.svg"
+        width="800" height="160" id="andar">
+
+    <script>
+        $(function () {
+            $('#hide').click(function () {
+                $('#andar').hide(5000);
+            })
+            $('#show').click(function () {
+                $('#andar').show(3000);
+            })
+            $('#toggle').click(function () {
+                $('#andar').toggle(500);
+            })
+            $('#fadeIn').click(function () {
+                $('#andar').fadeIn(3000);
+            })
+            $('#fadeOut').click(function () {
+                $('#andar').fadeOut(3000);
+            })
+            $('#fadeToggle').click(function () {
+                $('#andar').fadeToggle(1000);
+            })
+        });
+    </script>
+
+
+    <hr>
+
+    <h4>* 글자수세기 예제</h4>
+
+    <div style="border: 1px solid rgba(0,0,0,0.2);">
+        <br>
+        40자 이내로 입력하세요. <br>
+        <hr>
+        <textarea id="content" cols="40" rows="10" style="resize: none;" maxlength="40"></textarea>
+        <hr>
+        <br>
+        <span id="count">0</span>/40
+        <br>
+    </div>
+
+    <script>
+        $(function () {
+            $('#content').keyup(e => {
+                console.log(e.target.value.length);
+                if (e.target.value.length < 41) {
+                    $('#count').html(e.target.value.length);
+                };
+            })
+        });
+    </script>
+
+    <hr>
+
+    <button onclick="letsGo();">곤드레만드레밥보기</button>
+    <div style="padding: 100px;" id="busan"></div>
+
+    <script>
+        let pageNo = 1;
+        function letsGo() {
+
+            $.ajax({
+                url: 'https://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=7569977da16b61a71cea0de5de4a37b60026d70f750ca2fcc7a097de0641e861&numOfRows=10&resultType=json&pageNo=' + pageNo++,
+                dataType: 'json',
+                success: e => {
+                    // console.log(e.getFoodKr.item);
+                    const items = e.getFoodKr.item;
+                    // console.log(items);
+
+                    const el = items.map(e => `
+                                                <div style="display:flex; width: 100%; height: 130px;
+                                                            margin-bottom:10px">
+                                                    <div style="flex:2; padding: 7px;">
+                                                        <img src="${e.MAIN_IMG_NORMAL}"
+                                                            width="100%"
+                                                            height="100%"/>
+                                                    </div>
+                                                    <div style="flex:8">
+                                                        <h4>가게명 : ${e.MAIN_TITLE}</h4>
+                                                        <p>대표메뉴 : ${e.RPRSNTV_MENU}</p>
+                                                        <div>
+                                                            ${e.ITEMCNTNTS}
+                                                        </div>
+                                                    </div>
+                                                </div>`
+                    ).join('');
+                    document.querySelector('#busan').innerHTML = el;
+                }
+            });
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

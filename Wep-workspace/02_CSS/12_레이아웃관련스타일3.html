@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>레이아웃 관련 스타일3</title>
+
+    <style>
+        .float{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            float: left;
+        }
+        
+        body{
+            background-color: greenyellow;
+        }
+
+        .test{
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+        }
+
+        .red{
+            background-color: red;
+            visibility: hidden;
+        }
+        .orange{
+            background-color: orange;
+        }
+        .green{
+            background-color: green;
+        }
+
+        #sinhodeung{
+            background-color: black;
+            border: 1px solid white;
+            width: 150px;
+            height: 450px;
+        }
+
+        .outer{
+            border: 1px solid white;
+            position: relative;
+            height: 400px;
+        }
+
+        .position{
+            border: 1px solid yellow;
+        }
+
+        #p1{
+            width: 300px;
+            height: 300px;
+            background-color: coral;
+            position: absolute;
+            left: 100px;
+            top: 10px;
+        }
+
+        #p2{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            position: absolute;
+            left: 150px;
+            top: 70px;
+            transform: rotate(40deg)
+        }
+
+        #p3{
+            width: 100px;
+            height: 100px;
+            background-color: forestgreen;
+            position: absolute;
+            left: 80px;
+            top: 90px;
+            transform: rotate(-30deg);
+        }
+
+        #fix{
+            position: fixed;
+            width: 170px;
+            height: 600px;
+            color: wheat;
+            background-color: darkblue;
+            top: 60px;
+            right: 40px;
+        }
+
+        .z-test{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 1px solid white;
+        }
+
+        #z1{
+            background: lightgoldenrodyellow;
+            top: 100px;
+            left: 100px;
+            z-index: 1;
+        }
+
+        #z2{
+            background-color: palegoldenrod;
+            top: 50px;
+            left: 50px;
+            z-index: 2;
+        }
+
+        #z3{
+            background-color: goldenrod;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="float">1</div>
+    <div class="float">2</div>
+    <div class="float">3</div>
+    <div class="float">4</div>
+    <div class="float">5</div>
+    <br clear="both">
+    <h4>끄아앙</h4>
+
+    <div id="sinhodeung">
+        <div class="red test"></div>
+        <div class="orange test"></div>
+        <div class="green test"></div>
+    </div>
+
+    <div class="outer">
+        <div class="position" id="p1">1번요소</div>
+        <div class="position" id="p2">2번요소</div>
+        <div class="position" id="p3">3번요소</div>
+    </div>
+
+    <div id="fix">날 따라와라</div>
+
+    
+
+    <div class="outer">
+        <div id="z1" class="z-test">요소1</div>
+        <div id="z2" class="z-test">요소2</div>
+        <div id="z3" class="z-test">요소3</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개요!</title>
+</head>
+
+<body>
+    <p>
+        스크립트 언어 어플리케이션의 제어를 사용자의 요구에 맞게 수행할 수 있도록
+        빠르게 배우고 짧은 소스코드로 상호작용이 가능한 언어들
+
+        JavaScript 1995년 브라우저에 동작을 넣기 위해 브렌던 아이크에 의해 만들어진 언어
+        브라우저 전쟁을 거쳐 ECMAScript라는 표준으로 통일 됐고, ES6 이후
+        현대적 언어로 재탄생을 거쳐서 지금은 가장 웹에서 영향력이 큰 언어로 자리 잡았다
+        특징 가장 많이 씀
+        현 시대 웹에서 화면을 만들어내는 기반 기술로 사용되는 것이 가장 큰 특징
+        (Angular, Vue, React)
+    </p>
+
+    <!-- 버튼을 클릭하는 순간 알림창 띄우기 -->
+    <button onclick="alert('버튼을 누르셨습니다')">버튼</button>
+
+    <button ondblclick="console.log('와 ~ 이');">콘솔창 버튼!!</button>
+
+    <hr>
+    <button id="btn1">버튼</button>
+
+    <hr>
+    <button onclick="fn1();">버튼</button>
+
+    <hr>
+
+    <table border="1">
+        <tr>
+            <td>브라우저</td>
+            <td>렌더링엔진</td>
+            <td>자바스크립트엔진</td>
+        </tr>
+        <tr>
+            <td>Chrome / Edge / Whale</td>
+            <td>Blink</td>
+            <td>V8</td>
+        </tr>
+        <tr>
+            <td>Safari</td>
+            <td>Webkit</td>
+            <td>Nitro</td>
+        </tr>
+        <tr>
+            <td>Firefox</td>
+            <td>Gecko</td>
+            <td>SpiderMonkey</td>
+        </tr>
+
+    </table>
+
+    <hr>
+    <button id="btn2">나도 버튼이다~~</button>
+
+
+
+
+    <script>
+        // alert("하이하이~")
+        function fn1() { // 선언적 함수
+            alert('함수 호출~~');
+        }
+
+        // console.log(document);
+        const btnEl = document.getElementById('btn1');
+        console.log(btnEl);
+        btnEl.addEventListener('click', () => { fn1(); });
+
+        const btn2 = document.querySelector('#btn2');
+
+        btn2.onclick = function () { // 익명 함수
+            alert('호잇~~');
+            console.log('방법이 엄청 많네~~');
+        }
+
+    </script>
+
+    <p>
+        별도의 .js파일로 분리해서 가져다가 쓰는 방법
+    </p>
+
+    <script src="fn.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>

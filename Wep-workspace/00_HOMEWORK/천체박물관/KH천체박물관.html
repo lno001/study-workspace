@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KH천체박물관</title>
+
+    <style>
+        div, header, main, nav, footer {
+            border: 1px solid red;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(IMG/background.jpg);
+            background-size: cover;
+        }
+
+        #wrap {
+            width: 1000px;
+            height: 1600px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        header {
+            width: 1000px;
+            height: 50px;
+            display: flex;
+
+            &>#header__name {
+                width: 200px;
+                height: 50px;
+                display: flex;
+
+                &>#header__namelogo {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                &>#header__namepart {
+                    width: 150px;
+                    height: 50px;
+                }
+            }
+
+            &>#header__search {
+                width: 400px;
+                height: 50px;
+            }
+
+            &>nav {
+                width: 400px;
+                height: 50px;
+            }
+        }
+
+        main {
+            width: 1000px;
+            height: 1350px;
+
+            &>#main__event {
+                width: 1000px;
+                height: 400px;
+            }
+
+            &>#main__1 {
+                width: 1000px;
+                height: 450px;
+                display: flex;
+
+                &>#main__1__1 {
+                    width: 600px;
+                    height: 450px;
+                }
+
+                &>#main__1__2 {
+                    width: 400px;
+                    height: 450px;
+                }
+            }
+
+            &>#main__2 {
+                width: 1000px;
+                height: 500px;
+            }
+        }
+
+        footer {
+            width: 1000px;
+            height: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrap">
+        <header>
+            <div id="header__name">
+                <div id="header__namelogo">
+                    <img src="" alt="" id="logo">
+                </div>
+                <div id="header__namepart"></div>
+            </div>
+            <div id="header__search">
+                <form action="" id="search-form"></form>
+            </div>
+            <nav></nav>
+        </header>
+        <main>
+            <div id="main__event"></div>
+            <div id="main__1">
+                <div id="main__1__1"></div>
+                <div id="main__1__2"></div>
+            </div>
+            <div id="main__2"></div>
+        </main>
+        <footer></footer>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

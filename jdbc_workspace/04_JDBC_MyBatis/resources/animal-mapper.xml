@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="animalMapper">
+	
+	<insert id="save"
+			parameterType="animal">
+		INSERT
+		  INTO
+		  	   ANIMAL
+		VALUES
+			   (
+			   'A' || SEQ_ANIMAL.NEXTVAL
+			,  #{animalName}
+			,  #{speciesId}
+			,  #{zoneId}
+			,  #{keeperId}
+			,  #{gender}
+			,  #{weightKg}
+			,  SYSDATE
+			,  SYSDATE
+			   )
+	</insert>
+
+	<!-- 
+		resultMap	ResultSet으로부터 조회한 컬럼의 값을 하나씩 뽑아서 우리가 만든 VO / DTO객체의 필드에 담는 코드를 대신해주는 역할
+	 -->
+	<!-- 
+		<resultMap id="식별값" type="매핑아고자하는 자바객체의 타입(풀클래스명)">
+		
+		id는 PK컬럼일 시
+		<id column="조회된 결과를 뽑고자하는 컬럼명" property="해당 값을 매핑할 필드명" />
+		
+		나머지 컬럼		
+		<result column="조회된 결과를 뽑고자하는 컬럼명" property="해당 값을 매핑할 필드명" />
+		</resultMap>
+	 -->
+	 
+	<resultMap type="animal" id="animalResultSet">
+		<id column="ANIMAL_ID" property="animalId" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="SPECIES_NAME" property="speciesId" />
+		<result column="ZONE_NAME" property="zoneId" />
+		<result column="KEEPER_NAME" property="keeperId" />
+		<result column="GENDER" property="gender" />
+		<result column="WEIGHT_KG" property="weightKg" />
+	</resultMap>
+	
+	<sql id="selectAnimalColumn">
+		SELECT
+			   ANIMAL_ID animalId
+			 , ANIMAL_NAME animalName
+			 , SPECIES_NAME speciesId
+			 , ZONE_NAME zoneId
+			 , NVL(KEEPER_NAME, '미배정') keeperId
+			 , GENDER gender
+			 , WEIGHT_KG weightKg
+	      FROM
+		  	   ANIMAL
+	      LEFT
+		  JOIN
+		   	   SPECIES USING(SPECIES_ID)
+		  LEFT
+		  JOIN
+		  	   ZONE USING(ZONE_ID)
+		  LEFT
+		  JOIN 
+		  	   KEEPER USING(KEEPER_ID)
+	</sql>
+
+	<select id="animalFindAll"
+			resultType="animal">
+		<include refid="selectAnimalColumn" />
+		 ORDER
+		 	BY
+		 	   ANIMAL_ID DESC
+	</select>
+	
+	<select id="animalFindById" resultType="animal"
+			parameterType="string">
+		<include refid="selectAnimalColumn" />
+		 WHERE
+		 	   ANIMAL_ID = #{id} 	  
+	</select>
+	
+	<select id="animalFindByKeyword" resultType="animal"
+			parameterType="string">
+		SELECT
+				ANIMAL_ID 
+		     ,  ANIMAL_NAME 
+			 ,  SPECIES_ID 
+			 ,  ZONE_ID 
+			 ,  KEEPER_ID 
+			 ,  GENDER 
+			 ,  WEIGHT_KG 
+			 ,  BIRTH_DATE 
+			 ,  ARRIVAL_DATE 
+		  FROM
+		  		ANIMAL
+		 WHERE
+		 		ANIMAL_NAME LIKE '%' || #{keyword} || '%'
+		 ORDER
+		 	BY
+		 		ANIMAL_ID DESC
+	</select>
+	
+	<update id="updateAnimal" >
+		UPDATE
+				ANIMAL
+		   SET
+		   		ZONE_ID = #{zoneId}
+		   	 ,  KEEPER_ID = #{keeperId}
+		   	 ,  WEIGHT_KG = #{weightKg}
+		 WHERE
+		 		ANIMAL_ID = #{animalId}
+	</update>
+	
+	<delete id="deleteAnimal">
+		DELETE
+		  FROM
+				ANIMAL
+		 WHERE
+		 		ANIMAL_ID = #{animalId}
+	</delete>
+</mapper>

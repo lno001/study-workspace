@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>입력 양식 및 폼 관련 태그</title>
+</head>
+<body style="background-color: greenyellow;">
+    
+    <!--
+    <label>동물 이름을 입력하세요 > </label>
+    <input type="text" placeholder="최대 15자 이내로 입력해주세요." name="" id="">
+    <button>확인</button>
+    -->
+
+    <form action="findByKeyword" method="get">
+        키워드 : <input type="text" name="keyword"> <br>
+        <input type="submit" />
+    </form>
+
+    <form action="legend">
+
+        <fieldset>
+            <legend>회원정보</legend>
+            아이디 <input type="text" />
+            비밀번호 <input type="password" />
+        </fieldset>
+        <fieldset>
+            전화번호 <input type="text" />
+        </fieldset>
+        
+    </form>
+
+    <hr />
+
+    <form action="서버주소">
+        <h5>type = "text"</h5>
+        
+        아이디 : <input type="text" placeholder="꼭 쓰셈" required name="id"/>
+        <br><br>
+        <h5>type = "password"</h5>
+
+        <input type="submit" />
+    </form>
+
+    <form action="number">
+        나이 : <input type="number" value="0"
+        name="age">
+
+
+        <br><br>
+        <input type="submit">
+    </form>
+
+    <form action="date">
+
+        date : <input type="date" name="" id=""><br>
+        month : <input type="month" name="" id=""><br>
+        week : <input type="week" name="" id=""><br>
+        time : <input type="time" name="" id=""><br>
+        datetime-local : <input type="datetime-local" name="" id=""><br>
+        <br><br>
+        <button type="">입력</button>
+    </form>
+    <button type="">입력</button>
+
+    <hr>
+
+    <form action="checked">
+        <h5>radio button</h5>
+
+        투숙객 평가 점수 : <br>
+        <input type="radio" name="review" id="9+" value="9"> 9+ 최고 <br>
+        <input type="radio" name="review" id="8+" value="8"> 8+ 우수 <br>
+        <input type="radio" name="review" id="7+" value="7"> 7+ 좋음 <br>
+        <hr>
+
+        <h5>checkbox</h5>
+        
+        객실 편의 시설 / 서비스 <br>
+
+        <input type="checkbox" name="service" id="에어컨" value="에어컨"><label for="에어컨">에어컨</label><br>
+        <input type="checkbox" name="service" id="TV" value="TV">TV<br>
+        <input type="checkbox" name="service" id="mini-bar" value="mini-bar">미니바<br>
+        <input type="checkbox" name="service" id="세면도구" value="세면도구" ><label for="세면도구">세면도구</label><br>
+
+
+
+        <input type="submit">
+    </form>
+
+    <form action="button">
+
+        <input type="submit" name="" id="">
+        <input type="reset" name="" id="">
+        <input type="button" value="버튼" name="" id="">
+
+         <br><hr>
+         색상 : <input type="text" list="colors">
+        <datalist id="colors">
+            <option value="black">블랙</option>
+            <option value="blue">블루</option>
+            <option value="red">레드</option>
+        </datalist>
+
+
+    </form>
+
+    <form action="요청보낼URL">
+        https : 
+    </form>
+</body>
+</html>

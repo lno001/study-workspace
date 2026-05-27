@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lim.spring.chara.model.dao.CharaMapper">
+
+	<select id="SelectTotalCount" resultType="_int">
+		SELECT
+				COUNT(*)
+		  FROM
+		  		LIM_CHAR
+	</select>
+
+	<select id="findAll" resultType="chara">
+		SELECT
+				C.CHAR_NO
+			,	C.CHAR_NAME
+			,	C.CHAR_TIER
+			,	M.MEMBER_NAME
+			,	C.RELEASE_DATE
+		  FROM
+		  		LIM_CHAR C
+		  JOIN
+		  		LIM_MEMBER M USING (MEMBER_NO)
+		 ORDER
+		 	BY
+		 		C.CHAR_NO DESC
+		OFFSET	(#{pageNo} - 1) * #{boardLimit} ROWS 
+		 FETCH	NEXT #{boardLimit} ROWS ONLY
+	</select>
+
+
+
+
+
+</mapper>

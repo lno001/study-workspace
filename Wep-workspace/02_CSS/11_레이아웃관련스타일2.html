@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>레이아웃 두번째</title>
+    <style>
+        .container{
+            border: 3px solid lightgray;
+            padding: 20px;
+            background: lightblue;
+            margin: auto;
+        }
+
+        .red{
+            background: red;
+        }
+        .blue{
+            background: blue;
+        }
+        .green{
+            background: green;
+        }
+
+        .box{
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: yellow;
+        }
+        
+        #item{
+            width: 900px;
+            height: 20%;
+        }
+
+        #item > div{
+            box-sizing: border-box;
+            width: 25%;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="container" style="display: flex;">
+        <div class="box red" style="flex-grow: 1;">나는 1번</div>
+        <div class="box blue" style="flex-grow: 3;">나는 2번</div>
+        <div class="box green" style="flex: 1;">나는 3번</div>
+    </div>
+
+    <div class="container" style="display: flex; flex-direction: column;">
+        <div class="box red">나는 1번</div>
+        <div class="box blue">나는 2번</div>
+        <div class="box green">나는 3번</div>
+    </div>
+
+  <div class="container" style="display: flex; justify-content: space-evenly;">
+      <div class="box green">나는 3번</div>
+        <div class="box red">나는 1번</div>
+        <div class="box green">나는 3번</div>
+        <div class="box blue">나는 2번</div>
+        <div class="box green">나는 3번</div>
+    </div>
+
+    <div class="container" style="display: flex; justify-content: center ; height: 400px; align-items: center;" >
+        <div class="box red">나는 1번</div>
+        <div class="box blue">나는 2번</div>
+        <div class="box green">나는 3번</div>
+    </div>
+
+    <div id="container" style="background-color: turquoise;">
+        <div id="item">
+            <div class="box">나는 1번</div>
+            <div class="box">나는 2번</div>
+            <div class="box">나는 3번</div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
