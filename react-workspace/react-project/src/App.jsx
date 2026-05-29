@@ -3,7 +3,7 @@ import "./App.css";
 import ObservatoryHeader from "./pages/star/StarHeader";
 import ObservatoryFooter from "./pages/star/StarFooter";
 import MainHero from "./pages/star/StarMain";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, UNSAFE_useFogOFWarDiscovery } from "react-router-dom";
 import Chap01 from "./pages/Chap01";
 import Chap02 from "./pages/Chap02";
 import Chap03 from "./pages/Chap03";
@@ -16,6 +16,8 @@ import MemberList from "./pages/member/MemberList";
 import BoardList from "./pages/board/BoardList";
 import MemberDetail from "./pages/member/MemberDetail";
 import BoardDetail from "./pages/board/BoardDetail";
+import Foods from "./pages/Busan/List/Foods";
+import Food from "./pages/Busan/Detail/Food";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
         <Route path="/member/:id" element={<MemberDetail/>}/>
         <Route path="/board" element={<BoardList/>}/>
         <Route path="/board/:boardNo" element={<BoardDetail/>}/>
+        <Route path="/busans" element={<Foods/>}/>
+        <Route path="/busans/:id" element={<Food/>}/>
         <Route path="/chap01" element={<Chap01/>}/>
         <Route path="/chap02" element={<Chap02/>}/>
         <Route path="/chap03" element={<Chap03/>}/>

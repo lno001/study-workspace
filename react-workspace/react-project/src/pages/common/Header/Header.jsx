@@ -31,6 +31,12 @@ export default function Header() {
               공지사항
             </a>
             <a
+              onClick={() => navi("/busans")}
+              className="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition"
+            >
+              부산의 맛집
+            </a>
+            <a
               onClick={() => navi("/chap01")}
               className="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition"
             >
