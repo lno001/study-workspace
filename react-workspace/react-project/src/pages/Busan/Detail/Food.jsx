@@ -10,6 +10,7 @@ import {
 } from "../Styles/Foods.styles";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Review from "../Review/Review";
 
 const Food = () => {
   const { id } = useParams();
@@ -24,6 +25,45 @@ const Food = () => {
     lat: "",
     lng: "",
   });
+  const [content, setContent] = useState("");
+  const [rating, setRating] = useState("");
+  const [success, setSuccess] = useState(true);
+
+  const contentHandler = (e) => {
+    setContent(e.target.value);
+  };
+  const ratingHandler = (e) => {
+    setRating(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (content.trim() === "") {
+      alert("내용을 입력해주세요.");
+      return;
+    }
+
+    if (!Number(rating) || Number(rating) < 1 || Number(rating) > 5) {
+      alert("별점은 1~5 사이만 가능합니다.");
+      return;
+    }
+
+    axios
+      .post(`http://localhost/api/busans/${id}/reviews`, {
+        content: content,
+        rating: rating,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.status === 201) {
+          setContent("");
+          setRating("");
+          alert("리뷰 등록에 성공했습니다~");
+          setSuccess((success) => !success);
+        }
+      });
+  };
 
   useEffect(() => {
     axios.get(`http://localhost/api/busans/${id}`).then((result) => {
@@ -70,25 +110,39 @@ const Food = () => {
           뒤로가기
         </RestaurantMoreButton>
       </RestaurantWrap>
-      <div style={{ width: "50%", margin: "auto", height: "120px", border: "1px solid black", borderRadius: "20px" }}>
-        <form action="">
-            후기 작성 :{" "}
+      <div
+        style={{
+          width: "50%",
+          margin: "auto",
+          height: "120px",
+          border: "1px solid black",
+          borderRadius: "20px",
+        }}
+      >
+        <form onSubmit={submitHandler}>
+          후기 작성 :{" "}
           <input
+            onChange={contentHandler}
             type="text"
             placeholder="음식은 어떠셨나요??"
+            value={content}
           />
           <hr />
           별점 선택 :{" "}
           <input
+            onChange={ratingHandler}
             type="number"
             max="5"
             min="1"
             placeholder="별점을 남겨주세요"
+            value={rating}
           />
           <hr />
-          <button style={{border: "1px solid black"}}>후기 작성 완료</button>
+          <button style={{ border: "1px solid black" }}>후기 작성 완료</button>
         </form>
       </div>
+
+      <Review id={id} success={success} />
     </>
   );
 };

@@ -2,12 +2,20 @@ package com.kh.study.busan.model.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.kh.study.busan.model.dao.ReviewMapper;
+import com.kh.study.busan.model.dto.ReviewDto;
+
 @Service
 public class BusanService {
+	
+	@Autowired
+	private ReviewMapper mapper;
 
 	public String getRes(int page) {
 		
@@ -41,4 +49,14 @@ public class BusanService {
 		return apiResponse;
 	}
 
+	public void save(Long ucSeq, ReviewDto review) {
+		review.setUcSeq(ucSeq);
+		mapper.save(review);
+	}
+
+	public List<ReviewDto> findBySeq(Long ucSeq) {
+		return mapper.findBySeq(ucSeq);
+	}
+	
+	
 }

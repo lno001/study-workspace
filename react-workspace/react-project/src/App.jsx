@@ -18,6 +18,7 @@ import MemberDetail from "./pages/member/MemberDetail";
 import BoardDetail from "./pages/board/BoardDetail";
 import Foods from "./pages/Busan/List/Foods";
 import Food from "./pages/Busan/Detail/Food";
+import Festivals from "./pages/Festival/List/Festivals";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<h1>요기는 메인이에요</h1>} />
+        <Route path="/festivals" element={<Festivals/>}/>
         <Route path="/notices" element={<NoticeList/>}/>
         <Route path="/rep" element={<ReplyList/>}/>
         <Route path="/member" element={<MemberList/>}/>
