@@ -142,7 +142,7 @@ const Food = () => {
         </form>
       </div>
 
-      <Review id={id} success={success} />
+      <Review id={id} success={success} onSuccess={() => setSuccess((prev) => !prev)} />
     </>
   );
 };

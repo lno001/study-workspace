@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kh.study.busan.model.dao.ReviewMapper;
 import com.kh.study.busan.model.dto.ReviewDto;
+import com.kh.study.busan.model.dto.UpdateReviewDto;
+import com.kh.study.exception.ResourceNotFoundException;
 
 @Service
 public class BusanService {
@@ -51,11 +53,32 @@ public class BusanService {
 
 	public void save(Long ucSeq, ReviewDto review) {
 		review.setUcSeq(ucSeq);
+		if(review.getRating() < 1 || 5 < review.getRating()) {
+			// 예외 발생 시키기
+			// rating에 대한 책임은 Review에게 있음
+			// 지금 review는 단순히 데이터를 옮기는 Transfer용 객체임
+			// 그럼 비즈니스 로직은 어디에 넣지? => VO (초고수일 때)
+			// 
+		}
+			
 		mapper.save(review);
 	}
 
 	public List<ReviewDto> findBySeq(Long ucSeq) {
 		return mapper.findBySeq(ucSeq);
+	}
+
+	public void update(Long ucSeq, UpdateReviewDto urd) {
+		urd.setUcSeq(ucSeq);
+		int result = mapper.update(urd);
+		if (result < 1) {
+			throw new ResourceNotFoundException("리뷰가 존재하지 않습니다");
+		}
+	}
+
+	public void delete(Long ucSeq, UpdateReviewDto urd) {
+		urd.setUcSeq(ucSeq);
+		mapper.delete(urd);
 	}
 	
 	
