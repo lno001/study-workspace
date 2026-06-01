@@ -4,6 +4,11 @@ import java.sql.Date;
 
 import com.kh.study.busan.model.domain.Rating;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Review {
 	private Long ucSeq;
 	private String content;

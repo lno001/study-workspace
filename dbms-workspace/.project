@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>General</name>
-	<comment>General DBeaver project</comment>
+	<name>dbms-workspace</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
