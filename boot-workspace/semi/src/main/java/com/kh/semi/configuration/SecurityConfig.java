@@ -3,6 +3,8 @@ package com.kh.semi.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -33,7 +35,7 @@ public class SecurityConfig {
 				   .cors(AbstractHttpConfigurer::disable)
 				   .authorizeHttpRequests(requests -> {
 					   // POST방식으로 /members라는 요청이 오면 권한체크 안하고 전부 허용
-					   requests.requestMatchers(HttpMethod.POST, "/api/members").permitAll();
+					   requests.requestMatchers(HttpMethod.POST, "/api/members", "/api/auth/login").permitAll();
 				   })
 				   .build();
 	}
@@ -43,7 +45,10 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
+	@Bean
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
 	
 	
 	

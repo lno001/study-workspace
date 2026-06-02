@@ -22,6 +22,8 @@ public class LimUserService {
 	@Transactional
 	public void signUp(LimUserDto limUser) {
 		
+		
+		
 		LimUser limUserEntity = LimUser.builder().userId(limUser.getUserId())
 												 .userPwd(passwordEncoder.encode(limUser.getUserPwd()))
 												 .userName(limUser.getUserName())
