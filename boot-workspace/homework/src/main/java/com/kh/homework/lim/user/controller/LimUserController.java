@@ -25,4 +25,6 @@ public class LimUserController {
 		limUserService.signUp(limUser);
 		return ResponseEntity.status(201).build();
 	}
+	
+	// 테스트
 }
