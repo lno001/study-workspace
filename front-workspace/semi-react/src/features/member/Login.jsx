@@ -13,8 +13,10 @@ import {
 } from "../styles/AuthForm.styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
   const [memberId, setMemberId] = useState("");
   const [memberPwd, setMemberPwd] = useState("");
   const [status, setStatus] = useState("");
@@ -44,6 +46,11 @@ const Login = () => {
       })
       .then((result) => {
         console.log(result);
+
+        // localStorage.setItem("token", result.data.accessToken);
+        // alert(localStorage.getItem("token"));
+        login(result.data);
+        navi("/");
       })
       .catch((err) => {
         // console.log(err.response);
@@ -56,6 +63,12 @@ const Login = () => {
       });
   };
 
+  const onKeyDown = (e) => {
+    if (e.key == "Enter") {
+      onSubmit();
+    }
+  };
+
   return (
     <Page>
       <Card>
@@ -64,13 +77,18 @@ const Login = () => {
 
         <Field>
           <Label>아이디</Label>
-          <Input placeholder="아이디를 입력하세요." onChange={onChangeId} />
+          <Input
+            placeholder="아이디를 입력하세요."
+            onKeyDown={onKeyDown}
+            onChange={onChangeId}
+          />
         </Field>
         <Field>
           <Label>비밀번호</Label>
           <Input
             placeholder="비밀번호를 입력하세요."
             type="password"
+            onKeyDown={onKeyDown}
             onChange={onChangePwd}
           />
         </Field>
