@@ -46,7 +46,7 @@ public class SecurityConfig {
 		// 6.1버전 문법
 		// return http.formLogin(t -> t.disable()).build();
 		return http.formLogin(AbstractHttpConfigurer::disable)
-				   .csrf(AbstractHttpConfigurer::disable)
+				   .csrf(csrf -> csrf.disable())
 				   .cors(Customizer.withDefaults())
 				   .authorizeHttpRequests(requests -> {
 					   // POST방식으로 /members라는 요청이 오면 권한체크 안하고 전부 허용
