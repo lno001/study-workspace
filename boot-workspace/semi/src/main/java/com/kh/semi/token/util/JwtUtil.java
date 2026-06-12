@@ -22,13 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class JwtUtil {
 	// 토큰을 만드는 기능, 토큰을 검증하는 기능
-	
+
 	// header, payload, signature
-	
+
 	@Value(value = "${jwt.secret}")
 	private String secretKey;
 	private SecretKey key;
-	  
+
 	@PostConstruct
 	public void init() {
 		// log.info("엥? : {}", secretKey);
@@ -38,32 +38,20 @@ public class JwtUtil {
 
 	// Duration.ofMinutes(15) 만료기간은 15분
 	public String getAccessToken(CustomUserDetails user) {
-		return Jwts.builder()
-				   .subject(user.getUsername())
-				   .issuedAt(new Date())
-				   .expiration(Date.from(Instant.now().plus(Duration.ofMinutes(540))))
-				   .claim("memberName", user.getMemberName())
-				   .signWith(key)
-				   .compact();
-					
+		return Jwts.builder().subject(user.getUsername()).issuedAt(new Date())
+				.expiration(Date.from(Instant.now().plus(Duration.ofMinutes(15))))
+				.claim("memberName", user.getMemberName()).signWith(key).compact();
+
 	}
 
 	public String getRefreshToken(CustomUserDetails user) {
-		return Jwts.builder()
-				   .subject(user.getUsername())
-				   .issuedAt(new Date())
-				   .expiration(Date.from(Instant.now().plus(Duration.ofDays(5))))
-				   .claim("memberName", user.getMemberName())
-				   .signWith(key)
-				   .compact();
+		return Jwts.builder().subject(user.getUsername()).issuedAt(new Date())
+				.expiration(Date.from(Instant.now().plus(Duration.ofDays(1)))).claim("memberName", user.getMemberName())
+				.signWith(key).compact();
 	}
-	
+
 	public Claims parseJwt(String token) {
-		return Jwts.parser()
-				   .verifyWith(key)
-				   .build()
-				   .parseSignedClaims(token)
-				   .getPayload();
+		return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
 	}
-	
+
 }

@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react";
+import axios from "axios";
 
 // 보관함 만들기
 const AuthContext = createContext(null);
@@ -34,7 +35,10 @@ export function AuthProvider({ children }) {
     //   localStorage.removeItem("memberId");
     //   localStorage.removeItem("memberName");
     //   localStorage.removeItem("role");
-    ["token", "refreshToken", "memberId", "memberName", "role"].forEach((k) =>
+    axios.get(
+      `http://localhost/api/auth/logout?Id=${localStorage.getItem("memberId")}`,
+    );
+    [("token", "refreshToken", "memberId", "memberName", "role")].forEach((k) =>
       localStorage.removeItem(k),
     );
     setUser(null);

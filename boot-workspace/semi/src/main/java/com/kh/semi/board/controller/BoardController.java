@@ -60,16 +60,15 @@ public class BoardController {
 
 	@PatchMapping("/{boardNo}")
 	public ResponseEntity<Void> update(@Valid BoardDto board,
-										@RequestParam(name = "file", required = false) MultipartFile file,
-										@AuthenticationPrincipal CustomUserDetails user,
-										@PathVariable(name="boardNo") Long boardNo) {
+			@RequestParam(name = "file", required = false) MultipartFile file,
+			@AuthenticationPrincipal CustomUserDetails user, @PathVariable(name = "boardNo") Long boardNo) {
 		boardService.update(board, file, user, boardNo);
 		return ResponseEntity.ok().build();
 	}
 
 	@DeleteMapping("/{boardNo}")
-	public ResponseEntity<Void> deleteByBoardNo(@PathVariable(name="boardNo") Long boardNo,
-												@AuthenticationPrincipal CustomUserDetails user) {
+	public ResponseEntity<Void> deleteByBoardNo(@PathVariable(name = "boardNo") Long boardNo,
+			@AuthenticationPrincipal CustomUserDetails user) {
 		boardService.dlelteByBoardNo(user, boardNo);
 
 		return ResponseEntity.noContent().build();

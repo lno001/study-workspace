@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,5 +24,5 @@ public class BoardDto {
 	private String fileUrl;
 	private Date createDate;
 	private String status;
-	
+
 }

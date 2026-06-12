@@ -22,5 +22,5 @@ public interface BoardMapper {
 	void deleteByBoardNo(Long boardNo);
 
 	void update(@Valid BoardDto board);
-	
+
 }

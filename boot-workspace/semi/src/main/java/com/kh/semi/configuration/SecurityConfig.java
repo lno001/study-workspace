@@ -28,50 +28,50 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-	
+
 	private final JwtFilter jwtFilter;
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		// 5버전 문법, 7버전 이후로는 사용 불가
-		// return http.formLogin().disable().build(); 
+		// return http.formLogin().disable().build();
 		// 7버전에도 쓸 수 있는 문법
-		/* return http.formLogin(new Customizer<FormLoginConfigurer<HttpSecurity>>() {
-			@Override
-			public void customize(FormLoginConfigurer<HttpSecurity> t) {
-				t.disable();
-			}
-		}).build();
-		*/
+		/*
+		 * return http.formLogin(new Customizer<FormLoginConfigurer<HttpSecurity>>() {
+		 * 
+		 * @Override public void customize(FormLoginConfigurer<HttpSecurity> t) {
+		 * t.disable(); } }).build();
+		 */
 		// 6.1버전 문법
 		// return http.formLogin(t -> t.disable()).build();
-		return http.formLogin(AbstractHttpConfigurer::disable)
-				   .csrf(csrf -> csrf.disable())
-				   .cors(Customizer.withDefaults())
-				   .authorizeHttpRequests(requests -> {
-					   // POST방식으로 /members라는 요청이 오면 권한체크 안하고 전부 허용
-					   requests.requestMatchers(HttpMethod.POST, "/api/members", "/api/auth/login").permitAll();
-					   // PATCH방식으로 /api/members라는 요청이 오면 이녀석 인증이 된건가??
-					   requests.requestMatchers(HttpMethod.PATCH, "/api/members", "/api/boards/**").authenticated();
-					   requests.requestMatchers(HttpMethod.DELETE, "/api/members", "/api/boards/**").authenticated();
-					   requests.requestMatchers(HttpMethod.POST, "/api/boards", "/api/comments").authenticated();
-					   requests.requestMatchers(HttpMethod.GET, "/api/boards/**", "/api/comments", "/uploads/**").permitAll();
-				   }).sessionManagement(manager ->
-				   						manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				   .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-				   .build();
+		return http.formLogin(AbstractHttpConfigurer::disable).csrf(csrf -> csrf.disable())
+				.cors(Customizer.withDefaults()).authorizeHttpRequests(requests -> {
+					// POST방식으로 /members라는 요청이 오면 권한체크 안하고 전부 허용
+					requests.requestMatchers(HttpMethod.POST, "/api/members", "/api/auth/login", "/api/auth/refresh")
+							.permitAll();
+					// PATCH방식으로 /api/members라는 요청이 오면 이녀석 인증이 된건가??
+					requests.requestMatchers(HttpMethod.PATCH, "/api/members", "/api/boards/**").authenticated();
+					requests.requestMatchers(HttpMethod.DELETE, "/api/members", "/api/boards/**").authenticated();
+					requests.requestMatchers(HttpMethod.POST, "/api/boards", "/api/comments").authenticated();
+					requests.requestMatchers(HttpMethod.GET, "/api/boards/**", "/api/comments", "/uploads/**",
+							"/api/auth/logout").permitAll();
+//					requests.requestMatchers("/api/admin").hasRole("ADMIN"); // 시큐리티가 자동으로 앞에 ROLE_를 붙여줌
+					requests.requestMatchers("/api/admin").hasAuthority("ROLE_ADMIN"); // ROLE_ADMIN과 완전히 일치하는지
+//					requests.requestMatchers("/api/admin").hasAnyRole("ADMIN", "USER"); // 하나라도 있으면 단 앞에 ROLE_를 붙여줌
+				}).sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
 	}
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -83,11 +83,5 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
